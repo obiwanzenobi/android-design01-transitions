@@ -76,8 +76,8 @@ kod transition managera - prosty
 +++ 
 ### Jak to działa?
 @ul
-- Transition manager tworzy scene dla podanej ViewGroup'y, w której zostają zebrane parametry widoków (zgodnie z podaną tranzycją - o tym później),
--następnie ustawia "onPreDrawListener", który zostaje powiadomiony o następnej tworzonej klatce wyświetlanego UI.
+- Transition manager tworzy scene dla podanej ViewGroup'y, w której zostają pobrane parametry widoków,
+- następnie ustawia "onPreDrawListener", który zostaje powiadomiony o następnej tworzonej klatce wyświetlanego UI.
 - Podczas wywołania tego callbacka wartości widoku zostają zebrane ponownie do drugiej sceny.
 - Następnie zostają uruchomione tranzycje pomiędzy uzyskanymi scenami
 @ulend
