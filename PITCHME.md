@@ -10,3 +10,11 @@
 - Animated Vector Drawable 
 - MotionLayout (nie omawiane tutaj)
 @ulend
+
++++
+### android.view.animation
+
+@ul
+- Najstarsze api do animacji (Od Android 1.0)
+- Pozwala jedynie animować podstawowe Propercje widoku
+
