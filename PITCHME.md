@@ -177,12 +177,88 @@ Tworzone tranzycje są uniwersalne i mogą być użyte zarówno jako enter/exit 
 ---
 ### Custom Transition
 Od razu rzuca się w oczy mała ilość dostępnych domyślnie animacji. Na szczęście bardzo łatwo dopisać nowe.
-Kod 
+ 
+```kotlin
+class ScaleVisibilityTransition : Visibility {
 
+    private var before: Float = DEFAULT_BEFORE
+    private var after: Float = DEFAULT_AFTER
+
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
+        val attrArray = context.obtainStyledAttributes(attrs, R.styleable.ScaleVisibilityTransition)
+
+        before = attrArray.getFloat(R.styleable.ScaleVisibilityTransition_before, DEFAULT_BEFORE)
+        after = attrArray.getFloat(R.styleable.ScaleVisibilityTransition_after, DEFAULT_AFTER)
+
+        attrArray.recycle()
+    }
+
+    constructor(before: Float = 0.7f, after: Float = 1.0f) : super() {
+        this.before = before
+        this.after = after
+    }
+
+    override fun onAppear(
+        sceneRoot: ViewGroup?,
+        view: View,
+        startValues: TransitionValues?,
+        endValues: TransitionValues?
+    ): Animator {
+        view.scaleX = before
+        view.scaleY = before
+
+        return ValueAnimator.ofFloat(before, after).apply {
+
+            addUpdateListener { animation ->
+                val value = animation.animatedValue
+                if (value == null) {
+                    return@addUpdateListener
+                }
+
+                view.scaleX = value as Float
+                view.scaleY = value
+            }
+            interpolator = FastOutSlowInInterpolator()
+        }
+    }
+
+    override fun onDisappear(
+        sceneRoot: ViewGroup?,
+        view: View,
+        startValues: TransitionValues?,
+        endValues: TransitionValues?
+    ): Animator {
+        view.scaleX = after
+        view.scaleY = after
+
+        return ValueAnimator.ofFloat(after, before).apply {
+
+            addUpdateListener { animation ->
+                val value = animation.animatedValue
+                if (value == null) {
+                    return@addUpdateListener
+                }
+
+                view.scaleX = value as Float
+                view.scaleY = value
+            }
+            interpolator = FastOutSlowInInterpolator()
+        }
+    }
+}
+```
 
 +++ 
-kod wykorzystanie w xml wraz z parametrami
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<transitionSet xmlns:android="http://schemas.android.com/apk/res/android"
+               xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <fade />
+    <transition class="pl.lightmobile.design01transitions.ScaleVisibilityTransition"
+                app:before="0.5"/>
+</transitionSet>
+```
 +++ 
 
 Podczas tworzenia własnych tranzycji należy pamiętać, że powinny być łatwe w łączeniu i przedstawiające pojedyńczą operacje. Np. zamiast jednej tranzycji skalującej, zmieniającej alphe i kolor lepiej stworzyć je jako każda z osobna. T sama tranzycja może być użyta na wielu ekranach a także w Shared Element transition.
