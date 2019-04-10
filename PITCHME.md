@@ -64,14 +64,28 @@ Tranzycja ma za zadanie pobrać wartości początkowe i końcowe widoku (wartoś
 
 +++
 
-kod tranzycji wejścia
+```kotlin
+override fun onAttach(context: Context?) {
+     super.onAttach(context)
+     enterTransition = Slide(Gravity.TOP)
+}
+```
 
 +++ 
 
 ### TransitionManager
 W skład Transition Api wchodzi TransitionManager, który umożliwia przeprowadzenie tranzycji pomiędzy dwoma scenami. Sceny budowane są na podstawie ViewGroup i całego drzewa dzieci i ich parametrów. Można to robić ręcznie ale łatwiej i szybciej użyć TransitionManagera
 +++
-kod transition managera - prosty
+```kotlin
+button.setOnClickListener {
+      TransitionManager.beginDelayedTransition(root)
+      secondButton.isVisible = true
+}
+secondButton.setOnClickListener {
+      TransitionManager.beginDelayedTransition(root)
+      secondButton.isVisible = false
+}
+```        
 
 +++ 
 ### Jak to działa?
@@ -83,9 +97,27 @@ kod transition managera - prosty
 @ulend
 
 +++ 
+```kotlin
+val transitionSet = TransitionSet()
+val interpolator = AccelerateDecelerateInterpolator()
 
-Kod bardziej skomplikowanego auto-transition
+val firstBarTransition = Slide(Gravity.TOP).addTarget(R.id.topBar).setInterpolator(interpolator)
+val leftBarTransition = Slide(Gravity.START).addTarget(R.id.leftBar).setInterpolator(interpolator)
+val bottomBarTransition = Slide(Gravity.BOTTOM).addTarget(R.id.bottomBar).setInterpolator(interpolator)
+val rightBarTransition = Slide(Gravity.END).addTarget(R.id.rightBar).setInterpolator(interpolator)
+val contentTransition = Fade().addTarget(R.id.content)
 
+transitionSet
+  .addTransition(firstBarTransition)
+  .addTransition(leftBarTransition)
+  .addTransition(bottomBarTransition)
+  .addTransition(rightBarTransition)
+  .addTransition(contentTransition)
+  .setDuration(1000)
+  .setOrdering(TransitionSet.ORDERING_SEQUENTIAL)
+
+enterTransition = transitionSet
+```
 ---
 ### Rodzaje tranzycji
 @ul
