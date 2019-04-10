@@ -99,40 +99,6 @@ secondButton.setOnClickListener {
 
 +++ 
 ```kotlin
-val transitionSet = TransitionSet()
-val interpolator = AccelerateDecelerateInterpolator()
-
-val firstBarTransition = Slide(Gravity.TOP).addTarget(R.id.topBar).setInterpolator(interpolator)
-val leftBarTransition = Slide(Gravity.START).addTarget(R.id.leftBar).setInterpolator(interpolator)
-val bottomBarTransition = Slide(Gravity.BOTTOM).addTarget(R.id.bottomBar).setInterpolator(interpolator)
-val rightBarTransition = Slide(Gravity.END).addTarget(R.id.rightBar).setInterpolator(interpolator)
-val contentTransition = Fade().addTarget(R.id.content)
-
-transitionSet
-  .addTransition(firstBarTransition)
-  .addTransition(leftBarTransition)
-  .addTransition(bottomBarTransition)
-  .addTransition(rightBarTransition)
-  .addTransition(contentTransition)
-  .setDuration(1000)
-  .setOrdering(TransitionSet.ORDERING_SEQUENTIAL)
-
-enterTransition = transitionSet
-```
----
-### Rodzaje tranzycji
-@ul
-- AutoTransition - domyślny (fade out -> changeBounds -> fade in)
-- Fade, Slide, Explode
-- ChngeBounds, ImageTransform, ChangeScroll
-- TransitionSet
-- Customowe Tranzycje
-@ulend
-
-+++
-Przy użyciu TransitionSet jesteśmy w stanie osiągnąć skomplikowane animacje w bardzo opisowy i czytelny sposób
-
-```kotlin
 override fun onAttach(context: Context?) {
     super.onAttach(context)
     enterTransition = TransitionInflater.from(context).inflateTransition(R.transition.second_set)
@@ -164,7 +130,47 @@ override fun onAttach(context: Context?) {
     </slide>
 </transitionSet>
 ```
+---
+### Rodzaje tranzycji
+@ul
+- AutoTransition - domyślny (fade out -> changeBounds -> fade in)
+- Fade, Slide, Explode
+- ChngeBounds, ImageTransform, ChangeScroll
+- TransitionSet
+- Customowe Tranzycje
+@ulend
 
++++
+Przy użyciu TransitionSet jesteśmy w stanie osiągnąć skomplikowane animacje w bardzo opisowy i czytelny sposób
+```kotlin
+val transitionSet = TransitionSet()
+val interpolator = BounceInterpolator()
+
+val firstBarTransition = Slide(Gravity.TOP)
+     .addTarget(R.id.topBar).setInterpolator(interpolator)
+val leftBarTransition = Slide(Gravity.START)
+     .addTarget(R.id.leftBar).setInterpolator(interpolator)
+val bottomBarTransition = Slide(Gravity.BOTTOM)
+     .addTarget(R.id.bottomBar).setInterpolator(interpolator)
+val rightBarTransition = Slide(Gravity.END)
+     .addTarget(R.id.rightBar).setInterpolator(interpolator)
+val contentTransition = Fade().addTarget(R.id.content)
+
+transitionSet
+  .addTransition(firstBarTransition)
+  .addTransition(leftBarTransition)
+  .addTransition(bottomBarTransition)
+  .addTransition(rightBarTransition)
+  .addTransition(contentTransition)
+  .setDuration(1000)
+  .setOrdering(TransitionSet.ORDERING_SEQUENTIAL)
+
+enterTransition = transitionSet
+```
+@[1-2](Tworzenie TransitionSet i interpolatora)
+@[4-7](Ustawianie części składowych animacji)
+@[14-21](Konfiguracja TransitionSet)
+@[23](Ustawienie tranzycji wejścia)
 +++
 Tworzone tranzycje są uniwersalne i mogą być użyte zarówno jako enter/exit content transition w fragmencie / activity jak i podczas zmiany stanu na pojedyńczym widoku. Wszystkie tranzycje możliwe są do zdefiniowania zarówno w kodzie jak i w xml.
 
