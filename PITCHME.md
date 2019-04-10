@@ -63,7 +63,7 @@ Tranzycje skupiają sie na prostym, opisowym deklarowaniu animacji skupionych na
 Tranzycja ma za zadanie pobrać wartości początkowe i końcowe widoku (wartość pierwotna i wyjściowa) i zwrócić odpowiedni Animator, który zostanie wykorzystany do animacji widoku.
 
 +++
-
+### Animacja wejścia zawartości ekranu z góry
 ```kotlin
 override fun onAttach(context: Context?) {
      super.onAttach(context)
@@ -76,6 +76,7 @@ override fun onAttach(context: Context?) {
 ### TransitionManager
 W skład Transition Api wchodzi TransitionManager, który umożliwia przeprowadzenie tranzycji pomiędzy dwoma scenami. Sceny budowane są na podstawie ViewGroup i całego drzewa dzieci i ich parametrów. Można to robić ręcznie ale łatwiej i szybciej użyć TransitionManagera
 +++
+### Użycie TransitionManagera
 ```kotlin
 button.setOnClickListener {
       TransitionManager.beginDelayedTransition(root)
@@ -131,7 +132,38 @@ enterTransition = transitionSet
 +++
 Przy użyciu TransitionSet jesteśmy w stanie osiągnąć skomplikowane animacje w bardzo opisowy i czytelny sposób
 
-kod slidów z róznych stron i fade środka
+```kotlin
+override fun onAttach(context: Context?) {
+    super.onAttach(context)
+    enterTransition = TransitionInflater.from(context).inflateTransition(R.transition.second_set)
+}
+ ```
+```kotlin
+<?xml version="1.0" encoding="utf-8"?>
+<transitionSet xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <transitionSet>
+        <fade android:fadingMode="fade_in"
+              android:startDelay="100" />
+        <slide android:slideEdge="top" />
+        <targets>
+            <target android:targetId="@+id/topImage" />
+        </targets>
+    </transitionSet>
+
+    <fade>
+        <targets>
+            <target android:targetId="@+id/content" />
+        </targets>
+    </fade>
+
+    <slide android:slideEdge="start">
+        <targets>
+            <target android:targetId="@+id/title" />
+        </targets>
+    </slide>
+</transitionSet>
+```
 
 +++
 Tworzone tranzycje są uniwersalne i mogą być użyte zarówno jako enter/exit content transition w fragmencie / activity jak i podczas zmiany stanu na pojedyńczym widoku. Wszystkie tranzycje możliwe są do zdefiniowania zarówno w kodzie jak i w xml.
