@@ -1,7 +1,5 @@
 ---?image=images/chicago-1775878_1280.jpg
-@snap[north-east]
 ### @css[headline](Android Design Essentials - Animations / Transition API)
-@snapend
 
 --- 
 
