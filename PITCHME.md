@@ -268,6 +268,7 @@ Podczas tworzenia własnych tranzycji należy pamiętać, że powinny być łatw
 
 
 ---
+
 ### Podsumowanie
 Do zalet należy zaliczyć dobrą czytelność, możliwość przedstawienia w postaci XML, reużywalność Tranzycji i szybkość tworzenia prostych przejść.
 Do prostych zastosowań wystarczy powierzchowna znajomość beginDelayedTransition.
