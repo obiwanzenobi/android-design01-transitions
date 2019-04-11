@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/main_nav_graph" app:startDestination="@id/menuFragment">
+
+    <fragment android:id="@+id/menuFragment"
+              android:name="pl.lightmobile.design01transitions.MenuFragment"
+              tools:layout="@layout/fragment_menu"
+              android:label="MenuFragment" >
+        <action android:id="@+id/toSimpleTransitions"
+                app:destination="@id/simpleTransitionsFragment" />
+        <action android:id="@+id/toStateTransitions"
+                app:destination="@id/simpleStateFragment" />
+        <action android:id="@+id/toTransitionSet"
+                app:destination="@id/transitionSetFragment" />
+        <action android:id="@+id/toSecondTransitionSet"
+                app:destination="@id/transitionSet2Fragment" />
+        <action android:id="@+id/toPropagation"
+                app:destination="@id/transitionPropagationFragment" />
+        <action android:id="@+id/toCustom"
+                app:destination="@id/customTransitionFragment" />
+    </fragment>
+    <fragment android:id="@+id/simpleTransitionsFragment"
+              android:name="pl.lightmobile.design01transitions.SimpleTransitionsFragment"
+              tools:layout="@layout/fragment_simple_transitions"
+              android:label="SimpleTransitionsFragment" />
+    <fragment android:id="@+id/simpleStateFragment"
+              android:name="pl.lightmobile.design01transitions.SimpleStateFragment"
+              tools:layout="@layout/fragment_simple_state_transitions"
+              android:label="SimpleStateFragment" />
+    <fragment android:id="@+id/transitionSetFragment"
+              android:name="pl.lightmobile.design01transitions.TransitionSetFragment"
+              tools:layout="@layout/fragment_transition_set"
+              android:label="TransitionSetFragment" />
+    <fragment android:id="@+id/transitionSet2Fragment"
+              android:name="pl.lightmobile.design01transitions.TransitionSet2Fragment"
+              tools:layout="@layout/fragment_transition_set_second"
+              android:label="TransitionSet2Fragment" />
+    <fragment android:id="@+id/transitionPropagationFragment"
+              android:name="pl.lightmobile.design01transitions.TransitionPropagationFragment"
+              tools:layout="@layout/fragment_propagation"
+              android:label="TransitionPropagationFragment" />
+    <fragment android:id="@+id/customTransitionFragment"
+              tools:layout="@layout/fragment_custom_transition"
+              android:name="pl.lightmobile.design01transitions.CustomTransitionFragment"
+              android:label="CustomTransitionFragment" />
+</navigation>

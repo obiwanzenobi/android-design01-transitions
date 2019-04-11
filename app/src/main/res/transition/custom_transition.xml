@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<transitionSet xmlns:android="http://schemas.android.com/apk/res/android"
+               xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <fade />
+    <transition class="pl.lightmobile.design01transitions.ScaleVisibilityTransition"
+                app:before="0.5"/>
+</transitionSet>

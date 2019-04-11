@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="center"
+              android:orientation="vertical">
+
+    <Button
+        android:id="@+id/animatorButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="animator" />
+
+    <Button
+        android:id="@+id/simpleTransitions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Simple transitions" />
+
+    <Button
+        android:id="@+id/stateTransitions"
+        android:text="State transitions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/setTransitions"
+        android:text="Transition set"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/setTransitions2"
+        android:text="Transition set2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/propagation"
+        android:text="Propagation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/customTransition"
+        android:text="Custom Transition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>
