@@ -1,2 +1,3 @@
 theme : sky
 transition : slide
+theme-override: /PITCHME.css
