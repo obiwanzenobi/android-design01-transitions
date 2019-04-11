@@ -1,3 +1,4 @@
+---?image=images/chicago-1775878_1280.jpg
 ### Android Design Basics - Transition API
 
 --- 
