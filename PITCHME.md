@@ -1,5 +1,5 @@
 ---?image=images/chicago-1775878_1280.jpg
-### @css[headline](Android Design Essentials - Animations / Transition API)
+### @css[headline](Android Design Essentials - Animations 01: Transition API)
 
 --- 
 
