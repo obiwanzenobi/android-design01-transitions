@@ -1,5 +1,5 @@
 ---?image=images/chicago-1775878_1280.jpg
-### @color[white](Android Design Basics - Transition API)
+@color[white](Android Design Basics - Transition API)
 
 --- 
 
